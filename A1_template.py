@@ -80,7 +80,13 @@ def t_IDENTIFIER(t):
     t.type= keywords.get(t.value, 'IDENTIFIER')
     return t
 
-t_ignore = ' \t\r\n'  #ignoring whitespace 
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+t_ignore = ' \t\r'  #ignoring whitespace 
+
 
 def t_COMMENT(t):
     r'//.*'
@@ -100,6 +106,9 @@ lexer= lex.lex()
 textFile = open('Program_Test.txt', 'r')
 
 data = textFile.read()
+
+
+
 
 lexer.input(data)
 
