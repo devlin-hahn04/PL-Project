@@ -139,9 +139,13 @@ precedence= (          #precedence rules for operators
         ('left', 'TIMES', 'DIVIDE'),
         ('left', 'DOT'),
     )
+
+#global flag to track errors
+has_error= False
+
 #Defining grammar rules
 
-#Top-level rule! program consists of facts followed by exec line
+#Top-level rule! program consists of facts followed by exec line (required by PDF grammar)
 def p_global_facts(p):
     '''global_facts : facts exec_line'''
     p[0] = ('global_facts', p[1], p[2])  # Combines facts and exec_line
@@ -154,13 +158,8 @@ def p_facts_multiple(p):
 
 #Facts can be empty (no more facts)
 def p_facts_empty(p):
-    '''facts : empty'''
+    '''facts : '''
     p[0] = ('facts_empty',)  #End of facts list
-
-#Empty production 
-def p_empty(p):
-    '''empty :'''
-    p[0] = None  #Represents nothing
 
 #Function definition: func name[params] := body end
 def p_func_def(p):
@@ -275,10 +274,12 @@ def p_exec_line(p):
 
 #Error rule for syntax errors
 def p_error(p):
+    global has_error
+    has_error = True
     if p:
         print(f"Syntax error in input: line {p.lineno}")
     else:
-        print("Syntax error in input: none")
+        print("Syntax error in input: unexpected end of file (missing EXEC statement?)")
 
 # END PARSING DEFINITION
 
@@ -286,21 +287,27 @@ def p_error(p):
 # CALL PARSING 
 
 def main():
-  print("Initiating Parsing")
+    global has_error
+    has_error = False
+    
+    print("Initiating Parsing")
 
-  # Build the lexer and parser
-  lexer = lex.lex()
-  parser = yacc.yacc()
+    # Build the parser (lexer is already built)
+    parser = yacc.yacc()
 
-  # Read the file
-  textFile = open('Program_Test.txt', 'r')
-  data = textFile.read()
+    # Read the file
+    with open('Program_Test.txt', 'r') as textFile:
+        data = textFile.read()
 
-  # Parse the file
-  parser.parse(data, lexer=lexer)
-  
-  print("Finalizing Parsing")
+    # Parse the file
+    result = parser.parse(data, lexer=lexer)
+    
+    # Check if there were any errors
+    if not has_error:
+        print("Syntax error in input: none")
+    
+    print("Finalizing Parsing")
 
 if __name__ == '__main__':
-  main()
+    main()
 

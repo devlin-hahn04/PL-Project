@@ -6,87 +6,85 @@ Rule 0     S' -> global_facts
 Rule 1     global_facts -> facts exec_line
 Rule 2     facts -> func_def facts
 Rule 3     facts -> assign facts
-Rule 4     facts -> empty
-Rule 5     empty -> <empty>
-Rule 6     func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
-Rule 7     params -> ID_FUNC COMMA params
-Rule 8     params -> ID COMMA params
-Rule 9     params -> ID_FUNC
-Rule 10    params -> ID
-Rule 11    assign -> VAL ID ASSIGN stm END
-Rule 12    stm -> ID_FUNC LBRACE args RBRACE
-Rule 13    args -> ID_FUNC COMMA args
-Rule 14    args -> stm COMMA args
-Rule 15    args -> ID_FUNC
-Rule 16    args -> stm
-Rule 17    stm -> stm PLUS stm
-Rule 18    stm -> stm MINUS stm
-Rule 19    stm -> stm TIMES stm
-Rule 20    stm -> stm DIVIDE stm
-Rule 21    stm -> stm DOT stm
-Rule 22    stm -> stm LESS_THAN stm
-Rule 23    stm -> stm GREATER_THAN stm
-Rule 24    stm -> stm EQUAL stm
-Rule 25    stm -> stm AND stm
-Rule 26    stm -> stm OR stm
-Rule 27    stm -> STRING
-Rule 28    stm -> NUMBER
-Rule 29    stm -> TRUE
-Rule 30    stm -> FALSE
-Rule 31    stm -> NIL
-Rule 32    stm -> ID
-Rule 33    stm -> LPAREN stm RPAREN
-Rule 34    stm -> IF stm THEN stm ELSE stm END
-Rule 35    stm -> LET facts IN stm END
-Rule 36    exec_line -> EXEC stm
+Rule 4     facts -> <empty>
+Rule 5     func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
+Rule 6     params -> ID_FUNC COMMA params
+Rule 7     params -> ID COMMA params
+Rule 8     params -> ID_FUNC
+Rule 9     params -> ID
+Rule 10    assign -> VAL ID ASSIGN stm END
+Rule 11    stm -> ID_FUNC LBRACE args RBRACE
+Rule 12    args -> ID_FUNC COMMA args
+Rule 13    args -> stm COMMA args
+Rule 14    args -> ID_FUNC
+Rule 15    args -> stm
+Rule 16    stm -> stm PLUS stm
+Rule 17    stm -> stm MINUS stm
+Rule 18    stm -> stm TIMES stm
+Rule 19    stm -> stm DIVIDE stm
+Rule 20    stm -> stm DOT stm
+Rule 21    stm -> stm LESS_THAN stm
+Rule 22    stm -> stm GREATER_THAN stm
+Rule 23    stm -> stm EQUAL stm
+Rule 24    stm -> stm AND stm
+Rule 25    stm -> stm OR stm
+Rule 26    stm -> STRING
+Rule 27    stm -> NUMBER
+Rule 28    stm -> TRUE
+Rule 29    stm -> FALSE
+Rule 30    stm -> NIL
+Rule 31    stm -> ID
+Rule 32    stm -> LPAREN stm RPAREN
+Rule 33    stm -> IF stm THEN stm ELSE stm END
+Rule 34    stm -> LET facts IN stm END
+Rule 35    exec_line -> EXEC stm
 
 Terminals, with rules where they appear
 
-AND                  : 25
-ASSIGN               : 6 11
-COMMA                : 7 8 13 14
-DIVIDE               : 20
-DOT                  : 21
-ELSE                 : 34
-END                  : 6 11 34 35
-EQUAL                : 24
-EXEC                 : 36
-FALSE                : 30
-FUNC                 : 6
-GREATER_THAN         : 23
-ID                   : 8 10 11 32
-ID_FUNC              : 6 7 9 12 13 15
-IF                   : 34
-IN                   : 35
-LBRACE               : 6 12
-LESS_THAN            : 22
-LET                  : 35
-LPAREN               : 33
-MINUS                : 18
-NIL                  : 31
-NUMBER               : 28
-OR                   : 26
-PLUS                 : 17
-RBRACE               : 6 12
-RPAREN               : 33
-STRING               : 27
-THEN                 : 34
-TIMES                : 19
-TRUE                 : 29
-VAL                  : 11
+AND                  : 24
+ASSIGN               : 5 10
+COMMA                : 6 7 12 13
+DIVIDE               : 19
+DOT                  : 20
+ELSE                 : 33
+END                  : 5 10 33 34
+EQUAL                : 23
+EXEC                 : 35
+FALSE                : 29
+FUNC                 : 5
+GREATER_THAN         : 22
+ID                   : 7 9 10 31
+ID_FUNC              : 5 6 8 11 12 14
+IF                   : 33
+IN                   : 34
+LBRACE               : 5 11
+LESS_THAN            : 21
+LET                  : 34
+LPAREN               : 32
+MINUS                : 17
+NIL                  : 30
+NUMBER               : 27
+OR                   : 25
+PLUS                 : 16
+RBRACE               : 5 11
+RPAREN               : 32
+STRING               : 26
+THEN                 : 33
+TIMES                : 18
+TRUE                 : 28
+VAL                  : 10
 error                : 
 
 Nonterminals, with rules where they appear
 
-args                 : 12 13 14
+args                 : 11 12 13
 assign               : 3
-empty                : 4
 exec_line            : 1
-facts                : 1 2 3 35
+facts                : 1 2 3 34
 func_def             : 2
 global_facts         : 0
-params               : 6 7 8
-stm                  : 6 11 14 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 33 34 34 34 35 36
+params               : 5 6 7
+stm                  : 5 10 13 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 32 33 33 33 34 35
 
 Parsing method: LALR
 
@@ -96,20 +94,18 @@ state 0
     (1) global_facts -> . facts exec_line
     (2) facts -> . func_def facts
     (3) facts -> . assign facts
-    (4) facts -> . empty
-    (6) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
-    (11) assign -> . VAL ID ASSIGN stm END
-    (5) empty -> .
+    (4) facts -> .
+    (5) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
+    (10) assign -> . VAL ID ASSIGN stm END
 
-    FUNC            shift and go to state 6
-    VAL             shift and go to state 7
-    EXEC            reduce using rule 5 (empty -> .)
+    EXEC            reduce using rule 4 (facts -> .)
+    FUNC            shift and go to state 5
+    VAL             shift and go to state 6
 
     global_facts                   shift and go to state 1
     facts                          shift and go to state 2
     func_def                       shift and go to state 3
     assign                         shift and go to state 4
-    empty                          shift and go to state 5
 
 state 1
 
@@ -120,119 +116,107 @@ state 1
 state 2
 
     (1) global_facts -> facts . exec_line
-    (36) exec_line -> . EXEC stm
+    (35) exec_line -> . EXEC stm
 
-    EXEC            shift and go to state 9
+    EXEC            shift and go to state 8
 
-    exec_line                      shift and go to state 8
+    exec_line                      shift and go to state 7
 
 state 3
 
     (2) facts -> func_def . facts
     (2) facts -> . func_def facts
     (3) facts -> . assign facts
-    (4) facts -> . empty
-    (6) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
-    (11) assign -> . VAL ID ASSIGN stm END
-    (5) empty -> .
+    (4) facts -> .
+    (5) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
+    (10) assign -> . VAL ID ASSIGN stm END
 
-    FUNC            shift and go to state 6
-    VAL             shift and go to state 7
-    EXEC            reduce using rule 5 (empty -> .)
-    IN              reduce using rule 5 (empty -> .)
+    EXEC            reduce using rule 4 (facts -> .)
+    IN              reduce using rule 4 (facts -> .)
+    FUNC            shift and go to state 5
+    VAL             shift and go to state 6
 
     func_def                       shift and go to state 3
-    facts                          shift and go to state 10
+    facts                          shift and go to state 9
     assign                         shift and go to state 4
-    empty                          shift and go to state 5
 
 state 4
 
     (3) facts -> assign . facts
     (2) facts -> . func_def facts
     (3) facts -> . assign facts
-    (4) facts -> . empty
-    (6) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
-    (11) assign -> . VAL ID ASSIGN stm END
-    (5) empty -> .
+    (4) facts -> .
+    (5) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
+    (10) assign -> . VAL ID ASSIGN stm END
 
-    FUNC            shift and go to state 6
-    VAL             shift and go to state 7
-    EXEC            reduce using rule 5 (empty -> .)
-    IN              reduce using rule 5 (empty -> .)
+    EXEC            reduce using rule 4 (facts -> .)
+    IN              reduce using rule 4 (facts -> .)
+    FUNC            shift and go to state 5
+    VAL             shift and go to state 6
 
     assign                         shift and go to state 4
-    facts                          shift and go to state 11
+    facts                          shift and go to state 10
     func_def                       shift and go to state 3
-    empty                          shift and go to state 5
 
 state 5
 
-    (4) facts -> empty .
+    (5) func_def -> FUNC . ID_FUNC LBRACE params RBRACE ASSIGN stm END
 
-    EXEC            reduce using rule 4 (facts -> empty .)
-    IN              reduce using rule 4 (facts -> empty .)
+    ID_FUNC         shift and go to state 11
 
 
 state 6
 
-    (6) func_def -> FUNC . ID_FUNC LBRACE params RBRACE ASSIGN stm END
+    (10) assign -> VAL . ID ASSIGN stm END
 
-    ID_FUNC         shift and go to state 12
+    ID              shift and go to state 12
 
 
 state 7
-
-    (11) assign -> VAL . ID ASSIGN stm END
-
-    ID              shift and go to state 13
-
-
-state 8
 
     (1) global_facts -> facts exec_line .
 
     $end            reduce using rule 1 (global_facts -> facts exec_line .)
 
 
+state 8
+
+    (35) exec_line -> EXEC . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
+
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
+
+    stm                            shift and go to state 13
+
 state 9
-
-    (36) exec_line -> EXEC . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
-
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
-
-    stm                            shift and go to state 14
-
-state 10
 
     (2) facts -> func_def facts .
 
@@ -240,7 +224,7 @@ state 10
     IN              reduce using rule 2 (facts -> func_def facts .)
 
 
-state 11
+state 10
 
     (3) facts -> assign facts .
 
@@ -248,1856 +232,1854 @@ state 11
     IN              reduce using rule 3 (facts -> assign facts .)
 
 
+state 11
+
+    (5) func_def -> FUNC ID_FUNC . LBRACE params RBRACE ASSIGN stm END
+
+    LBRACE          shift and go to state 24
+
+
 state 12
 
-    (6) func_def -> FUNC ID_FUNC . LBRACE params RBRACE ASSIGN stm END
+    (10) assign -> VAL ID . ASSIGN stm END
 
-    LBRACE          shift and go to state 25
+    ASSIGN          shift and go to state 25
 
 
 state 13
 
-    (11) assign -> VAL ID . ASSIGN stm END
+    (35) exec_line -> EXEC stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    ASSIGN          shift and go to state 26
+    $end            reduce using rule 35 (exec_line -> EXEC stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 14
 
-    (36) exec_line -> EXEC stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (11) stm -> ID_FUNC . LBRACE args RBRACE
 
-    $end            reduce using rule 36 (exec_line -> EXEC stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    LBRACE          shift and go to state 36
 
 
 state 15
 
-    (12) stm -> ID_FUNC . LBRACE args RBRACE
+    (26) stm -> STRING .
 
-    LBRACE          shift and go to state 37
+    PLUS            reduce using rule 26 (stm -> STRING .)
+    MINUS           reduce using rule 26 (stm -> STRING .)
+    TIMES           reduce using rule 26 (stm -> STRING .)
+    DIVIDE          reduce using rule 26 (stm -> STRING .)
+    DOT             reduce using rule 26 (stm -> STRING .)
+    LESS_THAN       reduce using rule 26 (stm -> STRING .)
+    GREATER_THAN    reduce using rule 26 (stm -> STRING .)
+    EQUAL           reduce using rule 26 (stm -> STRING .)
+    AND             reduce using rule 26 (stm -> STRING .)
+    OR              reduce using rule 26 (stm -> STRING .)
+    $end            reduce using rule 26 (stm -> STRING .)
+    RPAREN          reduce using rule 26 (stm -> STRING .)
+    THEN            reduce using rule 26 (stm -> STRING .)
+    END             reduce using rule 26 (stm -> STRING .)
+    COMMA           reduce using rule 26 (stm -> STRING .)
+    RBRACE          reduce using rule 26 (stm -> STRING .)
+    ELSE            reduce using rule 26 (stm -> STRING .)
 
 
 state 16
 
-    (27) stm -> STRING .
+    (27) stm -> NUMBER .
 
-    PLUS            reduce using rule 27 (stm -> STRING .)
-    MINUS           reduce using rule 27 (stm -> STRING .)
-    TIMES           reduce using rule 27 (stm -> STRING .)
-    DIVIDE          reduce using rule 27 (stm -> STRING .)
-    DOT             reduce using rule 27 (stm -> STRING .)
-    LESS_THAN       reduce using rule 27 (stm -> STRING .)
-    GREATER_THAN    reduce using rule 27 (stm -> STRING .)
-    EQUAL           reduce using rule 27 (stm -> STRING .)
-    AND             reduce using rule 27 (stm -> STRING .)
-    OR              reduce using rule 27 (stm -> STRING .)
-    $end            reduce using rule 27 (stm -> STRING .)
-    RPAREN          reduce using rule 27 (stm -> STRING .)
-    THEN            reduce using rule 27 (stm -> STRING .)
-    END             reduce using rule 27 (stm -> STRING .)
-    COMMA           reduce using rule 27 (stm -> STRING .)
-    RBRACE          reduce using rule 27 (stm -> STRING .)
-    ELSE            reduce using rule 27 (stm -> STRING .)
+    PLUS            reduce using rule 27 (stm -> NUMBER .)
+    MINUS           reduce using rule 27 (stm -> NUMBER .)
+    TIMES           reduce using rule 27 (stm -> NUMBER .)
+    DIVIDE          reduce using rule 27 (stm -> NUMBER .)
+    DOT             reduce using rule 27 (stm -> NUMBER .)
+    LESS_THAN       reduce using rule 27 (stm -> NUMBER .)
+    GREATER_THAN    reduce using rule 27 (stm -> NUMBER .)
+    EQUAL           reduce using rule 27 (stm -> NUMBER .)
+    AND             reduce using rule 27 (stm -> NUMBER .)
+    OR              reduce using rule 27 (stm -> NUMBER .)
+    $end            reduce using rule 27 (stm -> NUMBER .)
+    RPAREN          reduce using rule 27 (stm -> NUMBER .)
+    THEN            reduce using rule 27 (stm -> NUMBER .)
+    END             reduce using rule 27 (stm -> NUMBER .)
+    COMMA           reduce using rule 27 (stm -> NUMBER .)
+    RBRACE          reduce using rule 27 (stm -> NUMBER .)
+    ELSE            reduce using rule 27 (stm -> NUMBER .)
 
 
 state 17
 
-    (28) stm -> NUMBER .
+    (28) stm -> TRUE .
 
-    PLUS            reduce using rule 28 (stm -> NUMBER .)
-    MINUS           reduce using rule 28 (stm -> NUMBER .)
-    TIMES           reduce using rule 28 (stm -> NUMBER .)
-    DIVIDE          reduce using rule 28 (stm -> NUMBER .)
-    DOT             reduce using rule 28 (stm -> NUMBER .)
-    LESS_THAN       reduce using rule 28 (stm -> NUMBER .)
-    GREATER_THAN    reduce using rule 28 (stm -> NUMBER .)
-    EQUAL           reduce using rule 28 (stm -> NUMBER .)
-    AND             reduce using rule 28 (stm -> NUMBER .)
-    OR              reduce using rule 28 (stm -> NUMBER .)
-    $end            reduce using rule 28 (stm -> NUMBER .)
-    RPAREN          reduce using rule 28 (stm -> NUMBER .)
-    THEN            reduce using rule 28 (stm -> NUMBER .)
-    END             reduce using rule 28 (stm -> NUMBER .)
-    COMMA           reduce using rule 28 (stm -> NUMBER .)
-    RBRACE          reduce using rule 28 (stm -> NUMBER .)
-    ELSE            reduce using rule 28 (stm -> NUMBER .)
+    PLUS            reduce using rule 28 (stm -> TRUE .)
+    MINUS           reduce using rule 28 (stm -> TRUE .)
+    TIMES           reduce using rule 28 (stm -> TRUE .)
+    DIVIDE          reduce using rule 28 (stm -> TRUE .)
+    DOT             reduce using rule 28 (stm -> TRUE .)
+    LESS_THAN       reduce using rule 28 (stm -> TRUE .)
+    GREATER_THAN    reduce using rule 28 (stm -> TRUE .)
+    EQUAL           reduce using rule 28 (stm -> TRUE .)
+    AND             reduce using rule 28 (stm -> TRUE .)
+    OR              reduce using rule 28 (stm -> TRUE .)
+    $end            reduce using rule 28 (stm -> TRUE .)
+    RPAREN          reduce using rule 28 (stm -> TRUE .)
+    THEN            reduce using rule 28 (stm -> TRUE .)
+    END             reduce using rule 28 (stm -> TRUE .)
+    COMMA           reduce using rule 28 (stm -> TRUE .)
+    RBRACE          reduce using rule 28 (stm -> TRUE .)
+    ELSE            reduce using rule 28 (stm -> TRUE .)
 
 
 state 18
 
-    (29) stm -> TRUE .
+    (29) stm -> FALSE .
 
-    PLUS            reduce using rule 29 (stm -> TRUE .)
-    MINUS           reduce using rule 29 (stm -> TRUE .)
-    TIMES           reduce using rule 29 (stm -> TRUE .)
-    DIVIDE          reduce using rule 29 (stm -> TRUE .)
-    DOT             reduce using rule 29 (stm -> TRUE .)
-    LESS_THAN       reduce using rule 29 (stm -> TRUE .)
-    GREATER_THAN    reduce using rule 29 (stm -> TRUE .)
-    EQUAL           reduce using rule 29 (stm -> TRUE .)
-    AND             reduce using rule 29 (stm -> TRUE .)
-    OR              reduce using rule 29 (stm -> TRUE .)
-    $end            reduce using rule 29 (stm -> TRUE .)
-    RPAREN          reduce using rule 29 (stm -> TRUE .)
-    THEN            reduce using rule 29 (stm -> TRUE .)
-    END             reduce using rule 29 (stm -> TRUE .)
-    COMMA           reduce using rule 29 (stm -> TRUE .)
-    RBRACE          reduce using rule 29 (stm -> TRUE .)
-    ELSE            reduce using rule 29 (stm -> TRUE .)
+    PLUS            reduce using rule 29 (stm -> FALSE .)
+    MINUS           reduce using rule 29 (stm -> FALSE .)
+    TIMES           reduce using rule 29 (stm -> FALSE .)
+    DIVIDE          reduce using rule 29 (stm -> FALSE .)
+    DOT             reduce using rule 29 (stm -> FALSE .)
+    LESS_THAN       reduce using rule 29 (stm -> FALSE .)
+    GREATER_THAN    reduce using rule 29 (stm -> FALSE .)
+    EQUAL           reduce using rule 29 (stm -> FALSE .)
+    AND             reduce using rule 29 (stm -> FALSE .)
+    OR              reduce using rule 29 (stm -> FALSE .)
+    $end            reduce using rule 29 (stm -> FALSE .)
+    RPAREN          reduce using rule 29 (stm -> FALSE .)
+    THEN            reduce using rule 29 (stm -> FALSE .)
+    END             reduce using rule 29 (stm -> FALSE .)
+    COMMA           reduce using rule 29 (stm -> FALSE .)
+    RBRACE          reduce using rule 29 (stm -> FALSE .)
+    ELSE            reduce using rule 29 (stm -> FALSE .)
 
 
 state 19
 
-    (30) stm -> FALSE .
+    (30) stm -> NIL .
 
-    PLUS            reduce using rule 30 (stm -> FALSE .)
-    MINUS           reduce using rule 30 (stm -> FALSE .)
-    TIMES           reduce using rule 30 (stm -> FALSE .)
-    DIVIDE          reduce using rule 30 (stm -> FALSE .)
-    DOT             reduce using rule 30 (stm -> FALSE .)
-    LESS_THAN       reduce using rule 30 (stm -> FALSE .)
-    GREATER_THAN    reduce using rule 30 (stm -> FALSE .)
-    EQUAL           reduce using rule 30 (stm -> FALSE .)
-    AND             reduce using rule 30 (stm -> FALSE .)
-    OR              reduce using rule 30 (stm -> FALSE .)
-    $end            reduce using rule 30 (stm -> FALSE .)
-    RPAREN          reduce using rule 30 (stm -> FALSE .)
-    THEN            reduce using rule 30 (stm -> FALSE .)
-    END             reduce using rule 30 (stm -> FALSE .)
-    COMMA           reduce using rule 30 (stm -> FALSE .)
-    RBRACE          reduce using rule 30 (stm -> FALSE .)
-    ELSE            reduce using rule 30 (stm -> FALSE .)
+    PLUS            reduce using rule 30 (stm -> NIL .)
+    MINUS           reduce using rule 30 (stm -> NIL .)
+    TIMES           reduce using rule 30 (stm -> NIL .)
+    DIVIDE          reduce using rule 30 (stm -> NIL .)
+    DOT             reduce using rule 30 (stm -> NIL .)
+    LESS_THAN       reduce using rule 30 (stm -> NIL .)
+    GREATER_THAN    reduce using rule 30 (stm -> NIL .)
+    EQUAL           reduce using rule 30 (stm -> NIL .)
+    AND             reduce using rule 30 (stm -> NIL .)
+    OR              reduce using rule 30 (stm -> NIL .)
+    $end            reduce using rule 30 (stm -> NIL .)
+    RPAREN          reduce using rule 30 (stm -> NIL .)
+    THEN            reduce using rule 30 (stm -> NIL .)
+    END             reduce using rule 30 (stm -> NIL .)
+    COMMA           reduce using rule 30 (stm -> NIL .)
+    RBRACE          reduce using rule 30 (stm -> NIL .)
+    ELSE            reduce using rule 30 (stm -> NIL .)
 
 
 state 20
 
-    (31) stm -> NIL .
+    (31) stm -> ID .
 
-    PLUS            reduce using rule 31 (stm -> NIL .)
-    MINUS           reduce using rule 31 (stm -> NIL .)
-    TIMES           reduce using rule 31 (stm -> NIL .)
-    DIVIDE          reduce using rule 31 (stm -> NIL .)
-    DOT             reduce using rule 31 (stm -> NIL .)
-    LESS_THAN       reduce using rule 31 (stm -> NIL .)
-    GREATER_THAN    reduce using rule 31 (stm -> NIL .)
-    EQUAL           reduce using rule 31 (stm -> NIL .)
-    AND             reduce using rule 31 (stm -> NIL .)
-    OR              reduce using rule 31 (stm -> NIL .)
-    $end            reduce using rule 31 (stm -> NIL .)
-    RPAREN          reduce using rule 31 (stm -> NIL .)
-    THEN            reduce using rule 31 (stm -> NIL .)
-    END             reduce using rule 31 (stm -> NIL .)
-    COMMA           reduce using rule 31 (stm -> NIL .)
-    RBRACE          reduce using rule 31 (stm -> NIL .)
-    ELSE            reduce using rule 31 (stm -> NIL .)
+    PLUS            reduce using rule 31 (stm -> ID .)
+    MINUS           reduce using rule 31 (stm -> ID .)
+    TIMES           reduce using rule 31 (stm -> ID .)
+    DIVIDE          reduce using rule 31 (stm -> ID .)
+    DOT             reduce using rule 31 (stm -> ID .)
+    LESS_THAN       reduce using rule 31 (stm -> ID .)
+    GREATER_THAN    reduce using rule 31 (stm -> ID .)
+    EQUAL           reduce using rule 31 (stm -> ID .)
+    AND             reduce using rule 31 (stm -> ID .)
+    OR              reduce using rule 31 (stm -> ID .)
+    $end            reduce using rule 31 (stm -> ID .)
+    RPAREN          reduce using rule 31 (stm -> ID .)
+    THEN            reduce using rule 31 (stm -> ID .)
+    END             reduce using rule 31 (stm -> ID .)
+    COMMA           reduce using rule 31 (stm -> ID .)
+    RBRACE          reduce using rule 31 (stm -> ID .)
+    ELSE            reduce using rule 31 (stm -> ID .)
 
 
 state 21
 
-    (32) stm -> ID .
+    (32) stm -> LPAREN . stm RPAREN
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    PLUS            reduce using rule 32 (stm -> ID .)
-    MINUS           reduce using rule 32 (stm -> ID .)
-    TIMES           reduce using rule 32 (stm -> ID .)
-    DIVIDE          reduce using rule 32 (stm -> ID .)
-    DOT             reduce using rule 32 (stm -> ID .)
-    LESS_THAN       reduce using rule 32 (stm -> ID .)
-    GREATER_THAN    reduce using rule 32 (stm -> ID .)
-    EQUAL           reduce using rule 32 (stm -> ID .)
-    AND             reduce using rule 32 (stm -> ID .)
-    OR              reduce using rule 32 (stm -> ID .)
-    $end            reduce using rule 32 (stm -> ID .)
-    RPAREN          reduce using rule 32 (stm -> ID .)
-    THEN            reduce using rule 32 (stm -> ID .)
-    END             reduce using rule 32 (stm -> ID .)
-    COMMA           reduce using rule 32 (stm -> ID .)
-    RBRACE          reduce using rule 32 (stm -> ID .)
-    ELSE            reduce using rule 32 (stm -> ID .)
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
+    stm                            shift and go to state 37
 
 state 22
 
-    (33) stm -> LPAREN . stm RPAREN
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (33) stm -> IF . stm THEN stm ELSE stm END
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 38
 
 state 23
 
-    (34) stm -> IF . stm THEN stm ELSE stm END
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (34) stm -> LET . facts IN stm END
+    (2) facts -> . func_def facts
+    (3) facts -> . assign facts
+    (4) facts -> .
+    (5) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
+    (10) assign -> . VAL ID ASSIGN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    IN              reduce using rule 4 (facts -> .)
+    FUNC            shift and go to state 5
+    VAL             shift and go to state 6
 
-    stm                            shift and go to state 39
+    facts                          shift and go to state 39
+    func_def                       shift and go to state 3
+    assign                         shift and go to state 4
 
 state 24
 
-    (35) stm -> LET . facts IN stm END
-    (2) facts -> . func_def facts
-    (3) facts -> . assign facts
-    (4) facts -> . empty
-    (6) func_def -> . FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END
-    (11) assign -> . VAL ID ASSIGN stm END
-    (5) empty -> .
+    (5) func_def -> FUNC ID_FUNC LBRACE . params RBRACE ASSIGN stm END
+    (6) params -> . ID_FUNC COMMA params
+    (7) params -> . ID COMMA params
+    (8) params -> . ID_FUNC
+    (9) params -> . ID
 
-    FUNC            shift and go to state 6
-    VAL             shift and go to state 7
-    IN              reduce using rule 5 (empty -> .)
+    ID_FUNC         shift and go to state 40
+    ID              shift and go to state 42
 
-    facts                          shift and go to state 40
-    func_def                       shift and go to state 3
-    assign                         shift and go to state 4
-    empty                          shift and go to state 5
+    params                         shift and go to state 41
 
 state 25
 
-    (6) func_def -> FUNC ID_FUNC LBRACE . params RBRACE ASSIGN stm END
-    (7) params -> . ID_FUNC COMMA params
-    (8) params -> . ID COMMA params
-    (9) params -> . ID_FUNC
-    (10) params -> . ID
+    (10) assign -> VAL ID ASSIGN . stm END
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 41
-    ID              shift and go to state 43
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
-    params                         shift and go to state 42
+    stm                            shift and go to state 43
 
 state 26
 
-    (11) assign -> VAL ID ASSIGN . stm END
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (16) stm -> stm PLUS . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 44
 
 state 27
 
-    (17) stm -> stm PLUS . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (17) stm -> stm MINUS . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 45
 
 state 28
 
-    (18) stm -> stm MINUS . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (18) stm -> stm TIMES . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 46
 
 state 29
 
-    (19) stm -> stm TIMES . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (19) stm -> stm DIVIDE . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 47
 
 state 30
 
-    (20) stm -> stm DIVIDE . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (20) stm -> stm DOT . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 48
 
 state 31
 
-    (21) stm -> stm DOT . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (21) stm -> stm LESS_THAN . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 49
 
 state 32
 
-    (22) stm -> stm LESS_THAN . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (22) stm -> stm GREATER_THAN . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 50
 
 state 33
 
-    (23) stm -> stm GREATER_THAN . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (23) stm -> stm EQUAL . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 51
 
 state 34
 
-    (24) stm -> stm EQUAL . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (24) stm -> stm AND . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 52
 
 state 35
 
-    (25) stm -> stm AND . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (25) stm -> stm OR . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 53
 
 state 36
 
-    (26) stm -> stm OR . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (11) stm -> ID_FUNC LBRACE . args RBRACE
+    (12) args -> . ID_FUNC COMMA args
+    (13) args -> . stm COMMA args
+    (14) args -> . ID_FUNC
+    (15) args -> . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 54
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
-    stm                            shift and go to state 54
+    args                           shift and go to state 55
+    stm                            shift and go to state 56
 
 state 37
 
-    (12) stm -> ID_FUNC LBRACE . args RBRACE
-    (13) args -> . ID_FUNC COMMA args
-    (14) args -> . stm COMMA args
-    (15) args -> . ID_FUNC
-    (16) args -> . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (32) stm -> LPAREN stm . RPAREN
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    ID_FUNC         shift and go to state 55
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    RPAREN          shift and go to state 57
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
-    args                           shift and go to state 56
-    stm                            shift and go to state 57
 
 state 38
 
-    (33) stm -> LPAREN stm . RPAREN
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (33) stm -> IF stm . THEN stm ELSE stm END
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    RPAREN          shift and go to state 58
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    THEN            shift and go to state 58
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 39
 
-    (34) stm -> IF stm . THEN stm ELSE stm END
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (34) stm -> LET facts . IN stm END
 
-    THEN            shift and go to state 59
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    IN              shift and go to state 59
 
 
 state 40
 
-    (35) stm -> LET facts . IN stm END
+    (6) params -> ID_FUNC . COMMA params
+    (8) params -> ID_FUNC .
 
-    IN              shift and go to state 60
+    COMMA           shift and go to state 60
+    RBRACE          reduce using rule 8 (params -> ID_FUNC .)
 
 
 state 41
 
-    (7) params -> ID_FUNC . COMMA params
-    (9) params -> ID_FUNC .
+    (5) func_def -> FUNC ID_FUNC LBRACE params . RBRACE ASSIGN stm END
 
-    COMMA           shift and go to state 61
-    RBRACE          reduce using rule 9 (params -> ID_FUNC .)
+    RBRACE          shift and go to state 61
 
 
 state 42
 
-    (6) func_def -> FUNC ID_FUNC LBRACE params . RBRACE ASSIGN stm END
+    (7) params -> ID . COMMA params
+    (9) params -> ID .
 
-    RBRACE          shift and go to state 62
+    COMMA           shift and go to state 62
+    RBRACE          reduce using rule 9 (params -> ID .)
 
 
 state 43
 
-    (8) params -> ID . COMMA params
-    (10) params -> ID .
+    (10) assign -> VAL ID ASSIGN stm . END
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    COMMA           shift and go to state 63
-    RBRACE          reduce using rule 10 (params -> ID .)
+    END             shift and go to state 63
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 44
 
-    (11) assign -> VAL ID ASSIGN stm . END
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (16) stm -> stm PLUS stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    END             shift and go to state 64
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    PLUS            reduce using rule 16 (stm -> stm PLUS stm .)
+    MINUS           reduce using rule 16 (stm -> stm PLUS stm .)
+    LESS_THAN       reduce using rule 16 (stm -> stm PLUS stm .)
+    GREATER_THAN    reduce using rule 16 (stm -> stm PLUS stm .)
+    EQUAL           reduce using rule 16 (stm -> stm PLUS stm .)
+    AND             reduce using rule 16 (stm -> stm PLUS stm .)
+    OR              reduce using rule 16 (stm -> stm PLUS stm .)
+    $end            reduce using rule 16 (stm -> stm PLUS stm .)
+    RPAREN          reduce using rule 16 (stm -> stm PLUS stm .)
+    THEN            reduce using rule 16 (stm -> stm PLUS stm .)
+    END             reduce using rule 16 (stm -> stm PLUS stm .)
+    COMMA           reduce using rule 16 (stm -> stm PLUS stm .)
+    RBRACE          reduce using rule 16 (stm -> stm PLUS stm .)
+    ELSE            reduce using rule 16 (stm -> stm PLUS stm .)
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+
+  ! TIMES           [ reduce using rule 16 (stm -> stm PLUS stm .) ]
+  ! DIVIDE          [ reduce using rule 16 (stm -> stm PLUS stm .) ]
+  ! DOT             [ reduce using rule 16 (stm -> stm PLUS stm .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 45
 
-    (17) stm -> stm PLUS stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (17) stm -> stm MINUS stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    PLUS            reduce using rule 17 (stm -> stm PLUS stm .)
-    MINUS           reduce using rule 17 (stm -> stm PLUS stm .)
-    LESS_THAN       reduce using rule 17 (stm -> stm PLUS stm .)
-    GREATER_THAN    reduce using rule 17 (stm -> stm PLUS stm .)
-    EQUAL           reduce using rule 17 (stm -> stm PLUS stm .)
-    AND             reduce using rule 17 (stm -> stm PLUS stm .)
-    OR              reduce using rule 17 (stm -> stm PLUS stm .)
-    $end            reduce using rule 17 (stm -> stm PLUS stm .)
-    RPAREN          reduce using rule 17 (stm -> stm PLUS stm .)
-    THEN            reduce using rule 17 (stm -> stm PLUS stm .)
-    END             reduce using rule 17 (stm -> stm PLUS stm .)
-    COMMA           reduce using rule 17 (stm -> stm PLUS stm .)
-    RBRACE          reduce using rule 17 (stm -> stm PLUS stm .)
-    ELSE            reduce using rule 17 (stm -> stm PLUS stm .)
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
+    PLUS            reduce using rule 17 (stm -> stm MINUS stm .)
+    MINUS           reduce using rule 17 (stm -> stm MINUS stm .)
+    LESS_THAN       reduce using rule 17 (stm -> stm MINUS stm .)
+    GREATER_THAN    reduce using rule 17 (stm -> stm MINUS stm .)
+    EQUAL           reduce using rule 17 (stm -> stm MINUS stm .)
+    AND             reduce using rule 17 (stm -> stm MINUS stm .)
+    OR              reduce using rule 17 (stm -> stm MINUS stm .)
+    $end            reduce using rule 17 (stm -> stm MINUS stm .)
+    RPAREN          reduce using rule 17 (stm -> stm MINUS stm .)
+    THEN            reduce using rule 17 (stm -> stm MINUS stm .)
+    END             reduce using rule 17 (stm -> stm MINUS stm .)
+    COMMA           reduce using rule 17 (stm -> stm MINUS stm .)
+    RBRACE          reduce using rule 17 (stm -> stm MINUS stm .)
+    ELSE            reduce using rule 17 (stm -> stm MINUS stm .)
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
 
-  ! TIMES           [ reduce using rule 17 (stm -> stm PLUS stm .) ]
-  ! DIVIDE          [ reduce using rule 17 (stm -> stm PLUS stm .) ]
-  ! DOT             [ reduce using rule 17 (stm -> stm PLUS stm .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 28 ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! TIMES           [ reduce using rule 17 (stm -> stm MINUS stm .) ]
+  ! DIVIDE          [ reduce using rule 17 (stm -> stm MINUS stm .) ]
+  ! DOT             [ reduce using rule 17 (stm -> stm MINUS stm .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 46
 
-    (18) stm -> stm MINUS stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (18) stm -> stm TIMES stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    PLUS            reduce using rule 18 (stm -> stm MINUS stm .)
-    MINUS           reduce using rule 18 (stm -> stm MINUS stm .)
-    LESS_THAN       reduce using rule 18 (stm -> stm MINUS stm .)
-    GREATER_THAN    reduce using rule 18 (stm -> stm MINUS stm .)
-    EQUAL           reduce using rule 18 (stm -> stm MINUS stm .)
-    AND             reduce using rule 18 (stm -> stm MINUS stm .)
-    OR              reduce using rule 18 (stm -> stm MINUS stm .)
-    $end            reduce using rule 18 (stm -> stm MINUS stm .)
-    RPAREN          reduce using rule 18 (stm -> stm MINUS stm .)
-    THEN            reduce using rule 18 (stm -> stm MINUS stm .)
-    END             reduce using rule 18 (stm -> stm MINUS stm .)
-    COMMA           reduce using rule 18 (stm -> stm MINUS stm .)
-    RBRACE          reduce using rule 18 (stm -> stm MINUS stm .)
-    ELSE            reduce using rule 18 (stm -> stm MINUS stm .)
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
+    PLUS            reduce using rule 18 (stm -> stm TIMES stm .)
+    MINUS           reduce using rule 18 (stm -> stm TIMES stm .)
+    TIMES           reduce using rule 18 (stm -> stm TIMES stm .)
+    DIVIDE          reduce using rule 18 (stm -> stm TIMES stm .)
+    LESS_THAN       reduce using rule 18 (stm -> stm TIMES stm .)
+    GREATER_THAN    reduce using rule 18 (stm -> stm TIMES stm .)
+    EQUAL           reduce using rule 18 (stm -> stm TIMES stm .)
+    AND             reduce using rule 18 (stm -> stm TIMES stm .)
+    OR              reduce using rule 18 (stm -> stm TIMES stm .)
+    $end            reduce using rule 18 (stm -> stm TIMES stm .)
+    RPAREN          reduce using rule 18 (stm -> stm TIMES stm .)
+    THEN            reduce using rule 18 (stm -> stm TIMES stm .)
+    END             reduce using rule 18 (stm -> stm TIMES stm .)
+    COMMA           reduce using rule 18 (stm -> stm TIMES stm .)
+    RBRACE          reduce using rule 18 (stm -> stm TIMES stm .)
+    ELSE            reduce using rule 18 (stm -> stm TIMES stm .)
+    DOT             shift and go to state 30
 
-  ! TIMES           [ reduce using rule 18 (stm -> stm MINUS stm .) ]
-  ! DIVIDE          [ reduce using rule 18 (stm -> stm MINUS stm .) ]
-  ! DOT             [ reduce using rule 18 (stm -> stm MINUS stm .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 28 ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! DOT             [ reduce using rule 18 (stm -> stm TIMES stm .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! TIMES           [ shift and go to state 28 ]
+  ! DIVIDE          [ shift and go to state 29 ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 47
 
-    (19) stm -> stm TIMES stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (19) stm -> stm DIVIDE stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    PLUS            reduce using rule 19 (stm -> stm TIMES stm .)
-    MINUS           reduce using rule 19 (stm -> stm TIMES stm .)
-    TIMES           reduce using rule 19 (stm -> stm TIMES stm .)
-    DIVIDE          reduce using rule 19 (stm -> stm TIMES stm .)
-    LESS_THAN       reduce using rule 19 (stm -> stm TIMES stm .)
-    GREATER_THAN    reduce using rule 19 (stm -> stm TIMES stm .)
-    EQUAL           reduce using rule 19 (stm -> stm TIMES stm .)
-    AND             reduce using rule 19 (stm -> stm TIMES stm .)
-    OR              reduce using rule 19 (stm -> stm TIMES stm .)
-    $end            reduce using rule 19 (stm -> stm TIMES stm .)
-    RPAREN          reduce using rule 19 (stm -> stm TIMES stm .)
-    THEN            reduce using rule 19 (stm -> stm TIMES stm .)
-    END             reduce using rule 19 (stm -> stm TIMES stm .)
-    COMMA           reduce using rule 19 (stm -> stm TIMES stm .)
-    RBRACE          reduce using rule 19 (stm -> stm TIMES stm .)
-    ELSE            reduce using rule 19 (stm -> stm TIMES stm .)
-    DOT             shift and go to state 31
+    PLUS            reduce using rule 19 (stm -> stm DIVIDE stm .)
+    MINUS           reduce using rule 19 (stm -> stm DIVIDE stm .)
+    TIMES           reduce using rule 19 (stm -> stm DIVIDE stm .)
+    DIVIDE          reduce using rule 19 (stm -> stm DIVIDE stm .)
+    LESS_THAN       reduce using rule 19 (stm -> stm DIVIDE stm .)
+    GREATER_THAN    reduce using rule 19 (stm -> stm DIVIDE stm .)
+    EQUAL           reduce using rule 19 (stm -> stm DIVIDE stm .)
+    AND             reduce using rule 19 (stm -> stm DIVIDE stm .)
+    OR              reduce using rule 19 (stm -> stm DIVIDE stm .)
+    $end            reduce using rule 19 (stm -> stm DIVIDE stm .)
+    RPAREN          reduce using rule 19 (stm -> stm DIVIDE stm .)
+    THEN            reduce using rule 19 (stm -> stm DIVIDE stm .)
+    END             reduce using rule 19 (stm -> stm DIVIDE stm .)
+    COMMA           reduce using rule 19 (stm -> stm DIVIDE stm .)
+    RBRACE          reduce using rule 19 (stm -> stm DIVIDE stm .)
+    ELSE            reduce using rule 19 (stm -> stm DIVIDE stm .)
+    DOT             shift and go to state 30
 
-  ! DOT             [ reduce using rule 19 (stm -> stm TIMES stm .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 28 ]
-  ! TIMES           [ shift and go to state 29 ]
-  ! DIVIDE          [ shift and go to state 30 ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! DOT             [ reduce using rule 19 (stm -> stm DIVIDE stm .) ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! TIMES           [ shift and go to state 28 ]
+  ! DIVIDE          [ shift and go to state 29 ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 48
 
-    (20) stm -> stm DIVIDE stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (20) stm -> stm DOT stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    PLUS            reduce using rule 20 (stm -> stm DIVIDE stm .)
-    MINUS           reduce using rule 20 (stm -> stm DIVIDE stm .)
-    TIMES           reduce using rule 20 (stm -> stm DIVIDE stm .)
-    DIVIDE          reduce using rule 20 (stm -> stm DIVIDE stm .)
-    LESS_THAN       reduce using rule 20 (stm -> stm DIVIDE stm .)
-    GREATER_THAN    reduce using rule 20 (stm -> stm DIVIDE stm .)
-    EQUAL           reduce using rule 20 (stm -> stm DIVIDE stm .)
-    AND             reduce using rule 20 (stm -> stm DIVIDE stm .)
-    OR              reduce using rule 20 (stm -> stm DIVIDE stm .)
-    $end            reduce using rule 20 (stm -> stm DIVIDE stm .)
-    RPAREN          reduce using rule 20 (stm -> stm DIVIDE stm .)
-    THEN            reduce using rule 20 (stm -> stm DIVIDE stm .)
-    END             reduce using rule 20 (stm -> stm DIVIDE stm .)
-    COMMA           reduce using rule 20 (stm -> stm DIVIDE stm .)
-    RBRACE          reduce using rule 20 (stm -> stm DIVIDE stm .)
-    ELSE            reduce using rule 20 (stm -> stm DIVIDE stm .)
-    DOT             shift and go to state 31
+    PLUS            reduce using rule 20 (stm -> stm DOT stm .)
+    MINUS           reduce using rule 20 (stm -> stm DOT stm .)
+    TIMES           reduce using rule 20 (stm -> stm DOT stm .)
+    DIVIDE          reduce using rule 20 (stm -> stm DOT stm .)
+    DOT             reduce using rule 20 (stm -> stm DOT stm .)
+    LESS_THAN       reduce using rule 20 (stm -> stm DOT stm .)
+    GREATER_THAN    reduce using rule 20 (stm -> stm DOT stm .)
+    EQUAL           reduce using rule 20 (stm -> stm DOT stm .)
+    AND             reduce using rule 20 (stm -> stm DOT stm .)
+    OR              reduce using rule 20 (stm -> stm DOT stm .)
+    $end            reduce using rule 20 (stm -> stm DOT stm .)
+    RPAREN          reduce using rule 20 (stm -> stm DOT stm .)
+    THEN            reduce using rule 20 (stm -> stm DOT stm .)
+    END             reduce using rule 20 (stm -> stm DOT stm .)
+    COMMA           reduce using rule 20 (stm -> stm DOT stm .)
+    RBRACE          reduce using rule 20 (stm -> stm DOT stm .)
+    ELSE            reduce using rule 20 (stm -> stm DOT stm .)
 
-  ! DOT             [ reduce using rule 20 (stm -> stm DIVIDE stm .) ]
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 28 ]
-  ! TIMES           [ shift and go to state 29 ]
-  ! DIVIDE          [ shift and go to state 30 ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! PLUS            [ shift and go to state 26 ]
+  ! MINUS           [ shift and go to state 27 ]
+  ! TIMES           [ shift and go to state 28 ]
+  ! DIVIDE          [ shift and go to state 29 ]
+  ! DOT             [ shift and go to state 30 ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 49
 
-    (21) stm -> stm DOT stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (21) stm -> stm LESS_THAN stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    PLUS            reduce using rule 21 (stm -> stm DOT stm .)
-    MINUS           reduce using rule 21 (stm -> stm DOT stm .)
-    TIMES           reduce using rule 21 (stm -> stm DOT stm .)
-    DIVIDE          reduce using rule 21 (stm -> stm DOT stm .)
-    DOT             reduce using rule 21 (stm -> stm DOT stm .)
-    LESS_THAN       reduce using rule 21 (stm -> stm DOT stm .)
-    GREATER_THAN    reduce using rule 21 (stm -> stm DOT stm .)
-    EQUAL           reduce using rule 21 (stm -> stm DOT stm .)
-    AND             reduce using rule 21 (stm -> stm DOT stm .)
-    OR              reduce using rule 21 (stm -> stm DOT stm .)
-    $end            reduce using rule 21 (stm -> stm DOT stm .)
-    RPAREN          reduce using rule 21 (stm -> stm DOT stm .)
-    THEN            reduce using rule 21 (stm -> stm DOT stm .)
-    END             reduce using rule 21 (stm -> stm DOT stm .)
-    COMMA           reduce using rule 21 (stm -> stm DOT stm .)
-    RBRACE          reduce using rule 21 (stm -> stm DOT stm .)
-    ELSE            reduce using rule 21 (stm -> stm DOT stm .)
+    LESS_THAN       reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    GREATER_THAN    reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    EQUAL           reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    AND             reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    OR              reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    $end            reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    RPAREN          reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    THEN            reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    END             reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    COMMA           reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    RBRACE          reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    ELSE            reduce using rule 21 (stm -> stm LESS_THAN stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
 
-  ! PLUS            [ shift and go to state 27 ]
-  ! MINUS           [ shift and go to state 28 ]
-  ! TIMES           [ shift and go to state 29 ]
-  ! DIVIDE          [ shift and go to state 30 ]
-  ! DOT             [ shift and go to state 31 ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! PLUS            [ reduce using rule 21 (stm -> stm LESS_THAN stm .) ]
+  ! MINUS           [ reduce using rule 21 (stm -> stm LESS_THAN stm .) ]
+  ! TIMES           [ reduce using rule 21 (stm -> stm LESS_THAN stm .) ]
+  ! DIVIDE          [ reduce using rule 21 (stm -> stm LESS_THAN stm .) ]
+  ! DOT             [ reduce using rule 21 (stm -> stm LESS_THAN stm .) ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 50
 
-    (22) stm -> stm LESS_THAN stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (22) stm -> stm GREATER_THAN stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    LESS_THAN       reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    GREATER_THAN    reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    EQUAL           reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    AND             reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    OR              reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    $end            reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    RPAREN          reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    THEN            reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    END             reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    COMMA           reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    RBRACE          reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    ELSE            reduce using rule 22 (stm -> stm LESS_THAN stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
+    LESS_THAN       reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    GREATER_THAN    reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    EQUAL           reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    AND             reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    OR              reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    $end            reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    RPAREN          reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    THEN            reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    END             reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    COMMA           reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    RBRACE          reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    ELSE            reduce using rule 22 (stm -> stm GREATER_THAN stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
 
-  ! PLUS            [ reduce using rule 22 (stm -> stm LESS_THAN stm .) ]
-  ! MINUS           [ reduce using rule 22 (stm -> stm LESS_THAN stm .) ]
-  ! TIMES           [ reduce using rule 22 (stm -> stm LESS_THAN stm .) ]
-  ! DIVIDE          [ reduce using rule 22 (stm -> stm LESS_THAN stm .) ]
-  ! DOT             [ reduce using rule 22 (stm -> stm LESS_THAN stm .) ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! PLUS            [ reduce using rule 22 (stm -> stm GREATER_THAN stm .) ]
+  ! MINUS           [ reduce using rule 22 (stm -> stm GREATER_THAN stm .) ]
+  ! TIMES           [ reduce using rule 22 (stm -> stm GREATER_THAN stm .) ]
+  ! DIVIDE          [ reduce using rule 22 (stm -> stm GREATER_THAN stm .) ]
+  ! DOT             [ reduce using rule 22 (stm -> stm GREATER_THAN stm .) ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 51
 
-    (23) stm -> stm GREATER_THAN stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (23) stm -> stm EQUAL stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    LESS_THAN       reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    GREATER_THAN    reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    EQUAL           reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    AND             reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    OR              reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    $end            reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    RPAREN          reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    THEN            reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    END             reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    COMMA           reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    RBRACE          reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    ELSE            reduce using rule 23 (stm -> stm GREATER_THAN stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
+    LESS_THAN       reduce using rule 23 (stm -> stm EQUAL stm .)
+    GREATER_THAN    reduce using rule 23 (stm -> stm EQUAL stm .)
+    EQUAL           reduce using rule 23 (stm -> stm EQUAL stm .)
+    AND             reduce using rule 23 (stm -> stm EQUAL stm .)
+    OR              reduce using rule 23 (stm -> stm EQUAL stm .)
+    $end            reduce using rule 23 (stm -> stm EQUAL stm .)
+    RPAREN          reduce using rule 23 (stm -> stm EQUAL stm .)
+    THEN            reduce using rule 23 (stm -> stm EQUAL stm .)
+    END             reduce using rule 23 (stm -> stm EQUAL stm .)
+    COMMA           reduce using rule 23 (stm -> stm EQUAL stm .)
+    RBRACE          reduce using rule 23 (stm -> stm EQUAL stm .)
+    ELSE            reduce using rule 23 (stm -> stm EQUAL stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
 
-  ! PLUS            [ reduce using rule 23 (stm -> stm GREATER_THAN stm .) ]
-  ! MINUS           [ reduce using rule 23 (stm -> stm GREATER_THAN stm .) ]
-  ! TIMES           [ reduce using rule 23 (stm -> stm GREATER_THAN stm .) ]
-  ! DIVIDE          [ reduce using rule 23 (stm -> stm GREATER_THAN stm .) ]
-  ! DOT             [ reduce using rule 23 (stm -> stm GREATER_THAN stm .) ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! PLUS            [ reduce using rule 23 (stm -> stm EQUAL stm .) ]
+  ! MINUS           [ reduce using rule 23 (stm -> stm EQUAL stm .) ]
+  ! TIMES           [ reduce using rule 23 (stm -> stm EQUAL stm .) ]
+  ! DIVIDE          [ reduce using rule 23 (stm -> stm EQUAL stm .) ]
+  ! DOT             [ reduce using rule 23 (stm -> stm EQUAL stm .) ]
+  ! LESS_THAN       [ shift and go to state 31 ]
+  ! GREATER_THAN    [ shift and go to state 32 ]
+  ! EQUAL           [ shift and go to state 33 ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 52
 
-    (24) stm -> stm EQUAL stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (24) stm -> stm AND stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    LESS_THAN       reduce using rule 24 (stm -> stm EQUAL stm .)
-    GREATER_THAN    reduce using rule 24 (stm -> stm EQUAL stm .)
-    EQUAL           reduce using rule 24 (stm -> stm EQUAL stm .)
-    AND             reduce using rule 24 (stm -> stm EQUAL stm .)
-    OR              reduce using rule 24 (stm -> stm EQUAL stm .)
-    $end            reduce using rule 24 (stm -> stm EQUAL stm .)
-    RPAREN          reduce using rule 24 (stm -> stm EQUAL stm .)
-    THEN            reduce using rule 24 (stm -> stm EQUAL stm .)
-    END             reduce using rule 24 (stm -> stm EQUAL stm .)
-    COMMA           reduce using rule 24 (stm -> stm EQUAL stm .)
-    RBRACE          reduce using rule 24 (stm -> stm EQUAL stm .)
-    ELSE            reduce using rule 24 (stm -> stm EQUAL stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
+    AND             reduce using rule 24 (stm -> stm AND stm .)
+    OR              reduce using rule 24 (stm -> stm AND stm .)
+    $end            reduce using rule 24 (stm -> stm AND stm .)
+    RPAREN          reduce using rule 24 (stm -> stm AND stm .)
+    THEN            reduce using rule 24 (stm -> stm AND stm .)
+    END             reduce using rule 24 (stm -> stm AND stm .)
+    COMMA           reduce using rule 24 (stm -> stm AND stm .)
+    RBRACE          reduce using rule 24 (stm -> stm AND stm .)
+    ELSE            reduce using rule 24 (stm -> stm AND stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
 
-  ! PLUS            [ reduce using rule 24 (stm -> stm EQUAL stm .) ]
-  ! MINUS           [ reduce using rule 24 (stm -> stm EQUAL stm .) ]
-  ! TIMES           [ reduce using rule 24 (stm -> stm EQUAL stm .) ]
-  ! DIVIDE          [ reduce using rule 24 (stm -> stm EQUAL stm .) ]
-  ! DOT             [ reduce using rule 24 (stm -> stm EQUAL stm .) ]
-  ! LESS_THAN       [ shift and go to state 32 ]
-  ! GREATER_THAN    [ shift and go to state 33 ]
-  ! EQUAL           [ shift and go to state 34 ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! PLUS            [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! MINUS           [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! TIMES           [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! DIVIDE          [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! DOT             [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! LESS_THAN       [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! GREATER_THAN    [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! EQUAL           [ reduce using rule 24 (stm -> stm AND stm .) ]
+  ! AND             [ shift and go to state 34 ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 53
 
-    (25) stm -> stm AND stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (25) stm -> stm OR stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    AND             reduce using rule 25 (stm -> stm AND stm .)
-    OR              reduce using rule 25 (stm -> stm AND stm .)
-    $end            reduce using rule 25 (stm -> stm AND stm .)
-    RPAREN          reduce using rule 25 (stm -> stm AND stm .)
-    THEN            reduce using rule 25 (stm -> stm AND stm .)
-    END             reduce using rule 25 (stm -> stm AND stm .)
-    COMMA           reduce using rule 25 (stm -> stm AND stm .)
-    RBRACE          reduce using rule 25 (stm -> stm AND stm .)
-    ELSE            reduce using rule 25 (stm -> stm AND stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
+    OR              reduce using rule 25 (stm -> stm OR stm .)
+    $end            reduce using rule 25 (stm -> stm OR stm .)
+    RPAREN          reduce using rule 25 (stm -> stm OR stm .)
+    THEN            reduce using rule 25 (stm -> stm OR stm .)
+    END             reduce using rule 25 (stm -> stm OR stm .)
+    COMMA           reduce using rule 25 (stm -> stm OR stm .)
+    RBRACE          reduce using rule 25 (stm -> stm OR stm .)
+    ELSE            reduce using rule 25 (stm -> stm OR stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
 
-  ! PLUS            [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! MINUS           [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! TIMES           [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! DIVIDE          [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! DOT             [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! LESS_THAN       [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! GREATER_THAN    [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! EQUAL           [ reduce using rule 25 (stm -> stm AND stm .) ]
-  ! AND             [ shift and go to state 35 ]
-  ! OR              [ shift and go to state 36 ]
+  ! PLUS            [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! MINUS           [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! TIMES           [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! DIVIDE          [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! DOT             [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! LESS_THAN       [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! GREATER_THAN    [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! EQUAL           [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! AND             [ reduce using rule 25 (stm -> stm OR stm .) ]
+  ! OR              [ shift and go to state 35 ]
 
 
 state 54
 
-    (26) stm -> stm OR stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (12) args -> ID_FUNC . COMMA args
+    (14) args -> ID_FUNC .
+    (11) stm -> ID_FUNC . LBRACE args RBRACE
 
-    OR              reduce using rule 26 (stm -> stm OR stm .)
-    $end            reduce using rule 26 (stm -> stm OR stm .)
-    RPAREN          reduce using rule 26 (stm -> stm OR stm .)
-    THEN            reduce using rule 26 (stm -> stm OR stm .)
-    END             reduce using rule 26 (stm -> stm OR stm .)
-    COMMA           reduce using rule 26 (stm -> stm OR stm .)
-    RBRACE          reduce using rule 26 (stm -> stm OR stm .)
-    ELSE            reduce using rule 26 (stm -> stm OR stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-
-  ! PLUS            [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! MINUS           [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! TIMES           [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! DIVIDE          [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! DOT             [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! LESS_THAN       [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! GREATER_THAN    [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! EQUAL           [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! AND             [ reduce using rule 26 (stm -> stm OR stm .) ]
-  ! OR              [ shift and go to state 36 ]
+    COMMA           shift and go to state 64
+    RBRACE          reduce using rule 14 (args -> ID_FUNC .)
+    LBRACE          shift and go to state 36
 
 
 state 55
 
-    (13) args -> ID_FUNC . COMMA args
-    (15) args -> ID_FUNC .
-    (12) stm -> ID_FUNC . LBRACE args RBRACE
+    (11) stm -> ID_FUNC LBRACE args . RBRACE
 
-    COMMA           shift and go to state 65
-    RBRACE          reduce using rule 15 (args -> ID_FUNC .)
-    LBRACE          shift and go to state 37
+    RBRACE          shift and go to state 65
 
 
 state 56
 
-    (12) stm -> ID_FUNC LBRACE args . RBRACE
+    (13) args -> stm . COMMA args
+    (15) args -> stm .
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    RBRACE          shift and go to state 66
+    COMMA           shift and go to state 66
+    RBRACE          reduce using rule 15 (args -> stm .)
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 57
 
-    (14) args -> stm . COMMA args
-    (16) args -> stm .
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (32) stm -> LPAREN stm RPAREN .
 
-    COMMA           shift and go to state 67
-    RBRACE          reduce using rule 16 (args -> stm .)
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    PLUS            reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    MINUS           reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    TIMES           reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    DIVIDE          reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    DOT             reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    LESS_THAN       reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    GREATER_THAN    reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    EQUAL           reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    AND             reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    OR              reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    $end            reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    RPAREN          reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    THEN            reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    END             reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    COMMA           reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    RBRACE          reduce using rule 32 (stm -> LPAREN stm RPAREN .)
+    ELSE            reduce using rule 32 (stm -> LPAREN stm RPAREN .)
 
 
 state 58
 
-    (33) stm -> LPAREN stm RPAREN .
+    (33) stm -> IF stm THEN . stm ELSE stm END
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    PLUS            reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    MINUS           reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    TIMES           reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    DIVIDE          reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    DOT             reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    LESS_THAN       reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    GREATER_THAN    reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    EQUAL           reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    AND             reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    OR              reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    $end            reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    RPAREN          reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    THEN            reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    END             reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    COMMA           reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    RBRACE          reduce using rule 33 (stm -> LPAREN stm RPAREN .)
-    ELSE            reduce using rule 33 (stm -> LPAREN stm RPAREN .)
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
+    stm                            shift and go to state 67
 
 state 59
 
-    (34) stm -> IF stm THEN . stm ELSE stm END
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (34) stm -> LET facts IN . stm END
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
     stm                            shift and go to state 68
 
 state 60
 
-    (35) stm -> LET facts IN . stm END
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (6) params -> ID_FUNC COMMA . params
+    (6) params -> . ID_FUNC COMMA params
+    (7) params -> . ID COMMA params
+    (8) params -> . ID_FUNC
+    (9) params -> . ID
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ID_FUNC         shift and go to state 40
+    ID              shift and go to state 42
 
-    stm                            shift and go to state 69
+    params                         shift and go to state 69
 
 state 61
 
-    (7) params -> ID_FUNC COMMA . params
-    (7) params -> . ID_FUNC COMMA params
-    (8) params -> . ID COMMA params
-    (9) params -> . ID_FUNC
-    (10) params -> . ID
+    (5) func_def -> FUNC ID_FUNC LBRACE params RBRACE . ASSIGN stm END
 
-    ID_FUNC         shift and go to state 41
-    ID              shift and go to state 43
+    ASSIGN          shift and go to state 70
 
-    params                         shift and go to state 70
 
 state 62
 
-    (6) func_def -> FUNC ID_FUNC LBRACE params RBRACE . ASSIGN stm END
+    (7) params -> ID COMMA . params
+    (6) params -> . ID_FUNC COMMA params
+    (7) params -> . ID COMMA params
+    (8) params -> . ID_FUNC
+    (9) params -> . ID
 
-    ASSIGN          shift and go to state 71
+    ID_FUNC         shift and go to state 40
+    ID              shift and go to state 42
 
+    params                         shift and go to state 71
 
 state 63
 
-    (8) params -> ID COMMA . params
-    (7) params -> . ID_FUNC COMMA params
-    (8) params -> . ID COMMA params
-    (9) params -> . ID_FUNC
-    (10) params -> . ID
+    (10) assign -> VAL ID ASSIGN stm END .
 
-    ID_FUNC         shift and go to state 41
-    ID              shift and go to state 43
+    FUNC            reduce using rule 10 (assign -> VAL ID ASSIGN stm END .)
+    VAL             reduce using rule 10 (assign -> VAL ID ASSIGN stm END .)
+    EXEC            reduce using rule 10 (assign -> VAL ID ASSIGN stm END .)
+    IN              reduce using rule 10 (assign -> VAL ID ASSIGN stm END .)
 
-    params                         shift and go to state 72
 
 state 64
 
-    (11) assign -> VAL ID ASSIGN stm END .
+    (12) args -> ID_FUNC COMMA . args
+    (12) args -> . ID_FUNC COMMA args
+    (13) args -> . stm COMMA args
+    (14) args -> . ID_FUNC
+    (15) args -> . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    FUNC            reduce using rule 11 (assign -> VAL ID ASSIGN stm END .)
-    VAL             reduce using rule 11 (assign -> VAL ID ASSIGN stm END .)
-    EXEC            reduce using rule 11 (assign -> VAL ID ASSIGN stm END .)
-    IN              reduce using rule 11 (assign -> VAL ID ASSIGN stm END .)
+    ID_FUNC         shift and go to state 54
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
+    args                           shift and go to state 72
+    stm                            shift and go to state 56
 
 state 65
 
-    (13) args -> ID_FUNC COMMA . args
-    (13) args -> . ID_FUNC COMMA args
-    (14) args -> . stm COMMA args
-    (15) args -> . ID_FUNC
-    (16) args -> . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (11) stm -> ID_FUNC LBRACE args RBRACE .
 
-    ID_FUNC         shift and go to state 55
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    PLUS            reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    MINUS           reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    TIMES           reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    DIVIDE          reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    DOT             reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    LESS_THAN       reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    GREATER_THAN    reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    EQUAL           reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    AND             reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    OR              reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    $end            reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    RPAREN          reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    THEN            reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    END             reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    COMMA           reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    RBRACE          reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
+    ELSE            reduce using rule 11 (stm -> ID_FUNC LBRACE args RBRACE .)
 
-    args                           shift and go to state 73
-    stm                            shift and go to state 57
 
 state 66
 
-    (12) stm -> ID_FUNC LBRACE args RBRACE .
+    (13) args -> stm COMMA . args
+    (12) args -> . ID_FUNC COMMA args
+    (13) args -> . stm COMMA args
+    (14) args -> . ID_FUNC
+    (15) args -> . stm
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    PLUS            reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    MINUS           reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    TIMES           reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    DIVIDE          reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    DOT             reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    LESS_THAN       reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    GREATER_THAN    reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    EQUAL           reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    AND             reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    OR              reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    $end            reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    RPAREN          reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    THEN            reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    END             reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    COMMA           reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    RBRACE          reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
-    ELSE            reduce using rule 12 (stm -> ID_FUNC LBRACE args RBRACE .)
+    ID_FUNC         shift and go to state 54
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
+    stm                            shift and go to state 56
+    args                           shift and go to state 73
 
 state 67
 
-    (14) args -> stm COMMA . args
-    (13) args -> . ID_FUNC COMMA args
-    (14) args -> . stm COMMA args
-    (15) args -> . ID_FUNC
-    (16) args -> . stm
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (33) stm -> IF stm THEN stm . ELSE stm END
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    ID_FUNC         shift and go to state 55
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    ELSE            shift and go to state 74
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
-    stm                            shift and go to state 57
-    args                           shift and go to state 74
 
 state 68
 
-    (34) stm -> IF stm THEN stm . ELSE stm END
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (34) stm -> LET facts IN stm . END
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    ELSE            shift and go to state 75
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    END             shift and go to state 75
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 69
 
-    (35) stm -> LET facts IN stm . END
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (6) params -> ID_FUNC COMMA params .
 
-    END             shift and go to state 76
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    RBRACE          reduce using rule 6 (params -> ID_FUNC COMMA params .)
 
 
 state 70
 
-    (7) params -> ID_FUNC COMMA params .
+    (5) func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN . stm END
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    RBRACE          reduce using rule 7 (params -> ID_FUNC COMMA params .)
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
+    stm                            shift and go to state 76
 
 state 71
 
-    (6) func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN . stm END
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (7) params -> ID COMMA params .
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    RBRACE          reduce using rule 7 (params -> ID COMMA params .)
 
-    stm                            shift and go to state 77
 
 state 72
 
-    (8) params -> ID COMMA params .
+    (12) args -> ID_FUNC COMMA args .
 
-    RBRACE          reduce using rule 8 (params -> ID COMMA params .)
+    RBRACE          reduce using rule 12 (args -> ID_FUNC COMMA args .)
 
 
 state 73
 
-    (13) args -> ID_FUNC COMMA args .
+    (13) args -> stm COMMA args .
 
-    RBRACE          reduce using rule 13 (args -> ID_FUNC COMMA args .)
+    RBRACE          reduce using rule 13 (args -> stm COMMA args .)
 
 
 state 74
 
-    (14) args -> stm COMMA args .
+    (33) stm -> IF stm THEN stm ELSE . stm END
+    (11) stm -> . ID_FUNC LBRACE args RBRACE
+    (16) stm -> . stm PLUS stm
+    (17) stm -> . stm MINUS stm
+    (18) stm -> . stm TIMES stm
+    (19) stm -> . stm DIVIDE stm
+    (20) stm -> . stm DOT stm
+    (21) stm -> . stm LESS_THAN stm
+    (22) stm -> . stm GREATER_THAN stm
+    (23) stm -> . stm EQUAL stm
+    (24) stm -> . stm AND stm
+    (25) stm -> . stm OR stm
+    (26) stm -> . STRING
+    (27) stm -> . NUMBER
+    (28) stm -> . TRUE
+    (29) stm -> . FALSE
+    (30) stm -> . NIL
+    (31) stm -> . ID
+    (32) stm -> . LPAREN stm RPAREN
+    (33) stm -> . IF stm THEN stm ELSE stm END
+    (34) stm -> . LET facts IN stm END
 
-    RBRACE          reduce using rule 14 (args -> stm COMMA args .)
+    ID_FUNC         shift and go to state 14
+    STRING          shift and go to state 15
+    NUMBER          shift and go to state 16
+    TRUE            shift and go to state 17
+    FALSE           shift and go to state 18
+    NIL             shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+    IF              shift and go to state 22
+    LET             shift and go to state 23
 
+    stm                            shift and go to state 77
 
 state 75
 
-    (34) stm -> IF stm THEN stm ELSE . stm END
-    (12) stm -> . ID_FUNC LBRACE args RBRACE
-    (17) stm -> . stm PLUS stm
-    (18) stm -> . stm MINUS stm
-    (19) stm -> . stm TIMES stm
-    (20) stm -> . stm DIVIDE stm
-    (21) stm -> . stm DOT stm
-    (22) stm -> . stm LESS_THAN stm
-    (23) stm -> . stm GREATER_THAN stm
-    (24) stm -> . stm EQUAL stm
-    (25) stm -> . stm AND stm
-    (26) stm -> . stm OR stm
-    (27) stm -> . STRING
-    (28) stm -> . NUMBER
-    (29) stm -> . TRUE
-    (30) stm -> . FALSE
-    (31) stm -> . NIL
-    (32) stm -> . ID
-    (33) stm -> . LPAREN stm RPAREN
-    (34) stm -> . IF stm THEN stm ELSE stm END
-    (35) stm -> . LET facts IN stm END
+    (34) stm -> LET facts IN stm END .
 
-    ID_FUNC         shift and go to state 15
-    STRING          shift and go to state 16
-    NUMBER          shift and go to state 17
-    TRUE            shift and go to state 18
-    FALSE           shift and go to state 19
-    NIL             shift and go to state 20
-    ID              shift and go to state 21
-    LPAREN          shift and go to state 22
-    IF              shift and go to state 23
-    LET             shift and go to state 24
+    PLUS            reduce using rule 34 (stm -> LET facts IN stm END .)
+    MINUS           reduce using rule 34 (stm -> LET facts IN stm END .)
+    TIMES           reduce using rule 34 (stm -> LET facts IN stm END .)
+    DIVIDE          reduce using rule 34 (stm -> LET facts IN stm END .)
+    DOT             reduce using rule 34 (stm -> LET facts IN stm END .)
+    LESS_THAN       reduce using rule 34 (stm -> LET facts IN stm END .)
+    GREATER_THAN    reduce using rule 34 (stm -> LET facts IN stm END .)
+    EQUAL           reduce using rule 34 (stm -> LET facts IN stm END .)
+    AND             reduce using rule 34 (stm -> LET facts IN stm END .)
+    OR              reduce using rule 34 (stm -> LET facts IN stm END .)
+    $end            reduce using rule 34 (stm -> LET facts IN stm END .)
+    RPAREN          reduce using rule 34 (stm -> LET facts IN stm END .)
+    THEN            reduce using rule 34 (stm -> LET facts IN stm END .)
+    END             reduce using rule 34 (stm -> LET facts IN stm END .)
+    COMMA           reduce using rule 34 (stm -> LET facts IN stm END .)
+    RBRACE          reduce using rule 34 (stm -> LET facts IN stm END .)
+    ELSE            reduce using rule 34 (stm -> LET facts IN stm END .)
 
-    stm                            shift and go to state 78
 
 state 76
 
-    (35) stm -> LET facts IN stm END .
+    (5) func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm . END
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
-    PLUS            reduce using rule 35 (stm -> LET facts IN stm END .)
-    MINUS           reduce using rule 35 (stm -> LET facts IN stm END .)
-    TIMES           reduce using rule 35 (stm -> LET facts IN stm END .)
-    DIVIDE          reduce using rule 35 (stm -> LET facts IN stm END .)
-    DOT             reduce using rule 35 (stm -> LET facts IN stm END .)
-    LESS_THAN       reduce using rule 35 (stm -> LET facts IN stm END .)
-    GREATER_THAN    reduce using rule 35 (stm -> LET facts IN stm END .)
-    EQUAL           reduce using rule 35 (stm -> LET facts IN stm END .)
-    AND             reduce using rule 35 (stm -> LET facts IN stm END .)
-    OR              reduce using rule 35 (stm -> LET facts IN stm END .)
-    $end            reduce using rule 35 (stm -> LET facts IN stm END .)
-    RPAREN          reduce using rule 35 (stm -> LET facts IN stm END .)
-    THEN            reduce using rule 35 (stm -> LET facts IN stm END .)
-    END             reduce using rule 35 (stm -> LET facts IN stm END .)
-    COMMA           reduce using rule 35 (stm -> LET facts IN stm END .)
-    RBRACE          reduce using rule 35 (stm -> LET facts IN stm END .)
-    ELSE            reduce using rule 35 (stm -> LET facts IN stm END .)
+    END             shift and go to state 78
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 77
 
-    (6) func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm . END
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (33) stm -> IF stm THEN stm ELSE stm . END
+    (16) stm -> stm . PLUS stm
+    (17) stm -> stm . MINUS stm
+    (18) stm -> stm . TIMES stm
+    (19) stm -> stm . DIVIDE stm
+    (20) stm -> stm . DOT stm
+    (21) stm -> stm . LESS_THAN stm
+    (22) stm -> stm . GREATER_THAN stm
+    (23) stm -> stm . EQUAL stm
+    (24) stm -> stm . AND stm
+    (25) stm -> stm . OR stm
 
     END             shift and go to state 79
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    PLUS            shift and go to state 26
+    MINUS           shift and go to state 27
+    TIMES           shift and go to state 28
+    DIVIDE          shift and go to state 29
+    DOT             shift and go to state 30
+    LESS_THAN       shift and go to state 31
+    GREATER_THAN    shift and go to state 32
+    EQUAL           shift and go to state 33
+    AND             shift and go to state 34
+    OR              shift and go to state 35
 
 
 state 78
 
-    (34) stm -> IF stm THEN stm ELSE stm . END
-    (17) stm -> stm . PLUS stm
-    (18) stm -> stm . MINUS stm
-    (19) stm -> stm . TIMES stm
-    (20) stm -> stm . DIVIDE stm
-    (21) stm -> stm . DOT stm
-    (22) stm -> stm . LESS_THAN stm
-    (23) stm -> stm . GREATER_THAN stm
-    (24) stm -> stm . EQUAL stm
-    (25) stm -> stm . AND stm
-    (26) stm -> stm . OR stm
+    (5) func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .
 
-    END             shift and go to state 80
-    PLUS            shift and go to state 27
-    MINUS           shift and go to state 28
-    TIMES           shift and go to state 29
-    DIVIDE          shift and go to state 30
-    DOT             shift and go to state 31
-    LESS_THAN       shift and go to state 32
-    GREATER_THAN    shift and go to state 33
-    EQUAL           shift and go to state 34
-    AND             shift and go to state 35
-    OR              shift and go to state 36
+    FUNC            reduce using rule 5 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
+    VAL             reduce using rule 5 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
+    EXEC            reduce using rule 5 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
+    IN              reduce using rule 5 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
 
 
 state 79
 
-    (6) func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .
+    (33) stm -> IF stm THEN stm ELSE stm END .
 
-    FUNC            reduce using rule 6 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
-    VAL             reduce using rule 6 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
-    EXEC            reduce using rule 6 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
-    IN              reduce using rule 6 (func_def -> FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END .)
-
-
-state 80
-
-    (34) stm -> IF stm THEN stm ELSE stm END .
-
-    PLUS            reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    MINUS           reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    TIMES           reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    DIVIDE          reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    DOT             reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    LESS_THAN       reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    GREATER_THAN    reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    EQUAL           reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    AND             reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    OR              reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    $end            reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    RPAREN          reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    THEN            reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    END             reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    COMMA           reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    RBRACE          reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
-    ELSE            reduce using rule 34 (stm -> IF stm THEN stm ELSE stm END .)
+    PLUS            reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    MINUS           reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    TIMES           reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    DIVIDE          reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    DOT             reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    LESS_THAN       reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    GREATER_THAN    reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    EQUAL           reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    AND             reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    OR              reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    $end            reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    RPAREN          reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    THEN            reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    END             reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    COMMA           reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    RBRACE          reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
+    ELSE            reduce using rule 33 (stm -> IF stm THEN stm ELSE stm END .)
 
