@@ -22,6 +22,8 @@ tokens = (
     'DIVIDE', 'DOT', 'AND', 'OR'
 )
 
+last_line= 1
+
 #Single character tokens
 
 
@@ -95,7 +97,9 @@ def t_ID_FUNC(t):
 
 def t_newline(t):
     r'\n+'
+    global last_line
     t.lexer.lineno += len(t.value)
+    last_line= t.lexer.lineno
 
 t_ignore = ' \t\r'  #ignoring whitespace 
 
@@ -147,8 +151,12 @@ has_error= False
 
 #Top-level rule! program consists of facts followed by exec line (required by PDF grammar)
 def p_global_facts(p):
-    '''global_facts : facts exec_line'''
-    p[0] = ('global_facts', p[1], p[2])  # Combines facts and exec_line
+    '''global_facts : facts exec_line
+                    | facts'''
+    if len(p) == 3:
+        p[0] = ('global_facts', p[1], p[2])
+    else:
+        p[0] = ('global_facts', p[1], None)  # No exec_line present
 
 #Facts can be function definitions or assignments and can have multiple
 def p_facts_multiple(p):
@@ -164,7 +172,7 @@ def p_facts_empty(p):
 #Function definition: func name[params] := body end
 def p_func_def(p):
     '''func_def : FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END'''
-    p[0] = ('func_def', p[2], p[4], p[7])  #Stores name, params, body
+    p[0] = ('func_def', p[2], p[4], p[7])
 
 #Parameters with comma (function name)
 def p_params_func_comma(p):
@@ -216,6 +224,13 @@ def p_args_stm(p):
     '''args : stm'''
     p[0] = ('args', p[1])  #Single argument
 
+def p_args_empty(p):
+    '''args : '''
+    p[0] = ('args_empty',)
+
+def p_params_empty(p):
+    '''params : '''
+    p[0] = ('params_empty',)
 
 #Binary Operators
 def p_stm_binop(p):
@@ -274,12 +289,13 @@ def p_exec_line(p):
 
 #Error rule for syntax errors
 def p_error(p):
-    global has_error
+    global has_error, last_line
     has_error = True
     if p:
-        print(f"Syntax error in input: line {p.lineno}")
+        print(f"Syntax error in input: {p.lineno}")
     else:
-        print("Syntax error in input: unexpected end of file (missing EXEC statement?)")
+        # EOF error - you need to track the last line number
+        print(f"Syntax error in input: {last_line}")
 
 # END PARSING DEFINITION
 
