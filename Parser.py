@@ -1,0 +1,362 @@
+import ply.lex as lex
+import ply.yacc as yacc
+
+
+# BEGIN LEXICAL ANALYZER DEFINITION
+
+
+#Creating the token list
+tokens = (
+    # Basic tokens
+    'ID', 'ID_FUNC', 'NUMBER', 'STRING',
+    
+    # Keywords
+    'IF', 'THEN', 'ELSE', 'LET', 'VAL', 'FUNC', 'END',
+    'IN', 'NIL', 'TRUE', 'FALSE', 'EXEC',
+    
+    # Delimiters
+    'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'COMMA', 'ASSIGN',
+    
+    # Operators
+    'EQUAL', 'LESS_THAN', 'GREATER_THAN', 'PLUS', 'MINUS', 'TIMES',
+    'DIVIDE', 'DOT', 'AND', 'OR'
+)
+
+last_line= 1
+
+#Single character tokens
+
+
+#Delimiters
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_LBRACE = r'\['
+t_RBRACE = r'\]'
+t_COMMA = r','
+
+#Operators
+t_EQUAL = r'='
+t_LESS_THAN = r'<'
+t_GREATER_THAN = r'>'
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_DOT = r'\.'
+t_AND = r'&'
+t_OR = r'\|'
+
+#Complex tokens as functions
+def t_ASSIGN(t):
+    r':='
+    return t
+
+def t_NUMBER(t):
+    r'\d+'  #\d matches any digit (0-9) and + is one or more of the pattern
+    t.value= int(t.value) #converting string to int for parser to use later
+    return t
+
+def t_STRING(t):
+    r'\"[^\"]*\"' #any character except double quote repeated 0 or more times
+    t.value= t.value[1:-1] #removing the quotes 
+    return t
+
+def t_ID(t):
+    r'[a-z][a-zA-Z0-9_\']*'
+    
+    #keywords being matched to token type
+    keywords= {
+            'if': 'IF',
+            'then': 'THEN',
+            'else': 'ELSE',
+            'let': 'LET',
+            'val': 'VAL',
+            'func': 'FUNC',
+            'end': 'END',
+            'in': 'IN',
+            'nil': 'NIL',
+            'true': 'TRUE',
+            'false': 'FALSE',
+            'exec': 'EXEC'
+
+            }
+
+    #checking whether token is a keyword
+    if t.value in keywords: 
+        t.type= keywords[t.value]
+
+    else:
+        t.type= 'ID'
+    
+    return t
+
+def t_ID_FUNC(t):
+    r'[A-Z][a-zA-Z0-9_\']*'
+    return t
+
+
+def t_newline(t):
+    r'\n+'
+    global last_line
+    t.lexer.lineno += len(t.value)
+    last_line= t.lexer.lineno
+
+t_ignore = ' \t\r'  #ignoring whitespace 
+
+
+def t_COMMENT(t):
+    r'//.*'
+    pass #not returning anything means ignoring 
+
+def t_error(t):
+    print(f"Illegal character used '{t.value[0]}'")
+    t.lexer.skip(1)
+
+lexer= lex.lex()
+
+# END LEXICAL ANALYZER DEFINITION
+
+
+#Testing Lexical Analysis
+
+textFile = open('Program_Test.txt', 'r')
+
+data = textFile.read()
+
+
+
+
+lexer.input(data)
+
+
+# END LEXICAL ANALYZER DEFINITION
+
+###########################
+
+# BEGIN PARSING DEFINITION
+
+precedence= (          #precedence rules for operators
+        ('left', 'OR'),
+        ('left', 'AND'),
+        ('left', 'EQUAL', 'LESS_THAN', 'GREATER_THAN'),
+        ('left', 'PLUS', 'MINUS'),
+        ('left', 'TIMES', 'DIVIDE'),
+        ('left', 'DOT'),
+    )
+
+#global flag to track errors
+has_error= False
+
+#Defining grammar rules
+
+#Top-level rule! program consists of facts followed by exec line (required by PDF grammar)
+def p_global_facts(p):
+    '''global_facts : facts exec_line
+                    | facts'''
+    if len(p) == 3:
+        p[0] = {'type': 'program', 'facts': p[1], 'exec': p[2]}
+    else:
+        p[0] = {'type': 'program', 'facts': p[1], 'exec': None}
+
+#Facts can be function definitions or assignments and can have multiple
+def p_facts_multiple(p):
+    '''facts : func_def facts
+             | assign facts'''
+    # Build a list: first item + rest of list
+    if isinstance(p[1], list):
+        p[0] = [p[1]] + p[2]
+    else:
+        p[0] = [p[1]] + p[2]
+
+def p_facts_empty(p):
+    '''facts : '''
+    p[0] = []
+
+#Function definition: func name[params] := body end
+def p_func_def(p):
+    '''func_def : FUNC ID_FUNC LBRACE params RBRACE ASSIGN stm END'''
+    p[0] = {
+        'type': 'func',
+        'name': p[2],
+        'params': p[4],
+        'stmt': p[7]
+    }
+
+def p_params_func_comma(p):
+    '''params : ID_FUNC COMMA params'''
+    p[0] = [{'type': 'id_func', 'id_func': p[1]}] + p[3]
+
+def p_params_id_comma(p):
+    '''params : ID COMMA params'''
+    p[0] = [{'type': 'id', 'id': p[1]}] + p[3]
+
+def p_params_func(p):
+    '''params : ID_FUNC'''
+    p[0] = [{'type': 'id_func', 'id_func': p[1]}]
+
+def p_params_id(p):
+    '''params : ID'''
+    p[0] = [{'type': 'id', 'id': p[1]}]
+
+def p_params_empty(p):
+    '''params : '''
+    p[0] = []
+
+#Variable assignment: val name := value end
+def p_assign(p):
+    '''assign : VAL ID ASSIGN stm END'''
+    p[0] = {
+        'type': 'val',
+        'name': p[2],
+        'stmt': p[4]
+    }
+
+#Function call: name[args]
+def p_stm_func_call(p):
+    '''stm : ID_FUNC LBRACE args RBRACE'''
+    p[0] = {
+        'type': 'stmt_func_call',
+        'id_func': p[1],
+        'args': p[3]
+    }
+
+def p_args_func_comma(p):
+    '''args : ID_FUNC COMMA args'''
+    p[0] = [{'type': 'id_func', 'id_func': p[1]}] + p[3]
+
+def p_args_stm_comma(p):
+    '''args : stm COMMA args'''
+    p[0] = [p[1]] + p[3]
+
+def p_args_func(p):
+    '''args : ID_FUNC'''
+    p[0] = [{'type': 'id_func', 'id_func': p[1]}]
+
+def p_args_stm(p):
+    '''args : stm'''
+    p[0] = [p[1]]
+
+def p_args_empty(p):
+    '''args : '''
+    p[0] = []
+
+#Binary Operators
+def p_stm_binop(p):
+    '''stm : stm PLUS stm
+           | stm MINUS stm
+           | stm TIMES stm
+           | stm DIVIDE stm
+           | stm DOT stm
+           | stm LESS_THAN stm
+           | stm GREATER_THAN stm
+           | stm EQUAL stm
+           | stm AND stm
+           | stm OR stm'''
+    p[0] = {
+        'type': 'stmt_op',
+        'op': p[2],
+        'left': p[1],
+        'right': p[3]
+    }
+
+#Basic values
+def p_stm_string(p):
+    '''stm : STRING'''
+    p[0] = {'type': 'stmt_value', 'type_value': 'string', 'value': p[1]}
+
+def p_stm_number(p):
+    '''stm : NUMBER'''
+    p[0] = {'type': 'stmt_value', 'type_value': 'number', 'value': p[1]}
+
+def p_stm_true(p):
+    '''stm : TRUE'''
+    p[0] = {'type': 'stmt_value', 'type_value': 'boolean', 'value': True}
+
+def p_stm_false(p):
+    '''stm : FALSE'''
+    p[0] = {'type': 'stmt_value', 'type_value': 'boolean', 'value': False}
+
+def p_stm_nil(p):
+    '''stm : NIL'''
+    p[0] = {'type': 'stmt_value', 'type_value': 'nil', 'value': None}
+
+def p_stm_id(p):
+    '''stm : ID'''
+    p[0] = {'type': 'stmt_id', 'id': p[1]}
+
+def p_stm_paren(p):
+    '''stm : LPAREN stm RPAREN'''
+    p[0] = p[2]  # Just return the inner statement (no wrapper)
+
+def p_stm_if(p):
+    '''stm : IF stm THEN stm ELSE stm END'''
+    p[0] = {
+        'type': 'stmt_if',
+        'condition': p[2],
+        'then_stmt': p[4],
+        'else_stmt': p[6]
+    }
+
+def p_stm_let(p):
+    '''stm : LET facts IN stm END'''
+    # Convert facts list to dictionary for easy lookup
+    facts_dict = {}
+    for fact in p[2]:
+        if fact['type'] == 'func':
+            facts_dict[fact['name']] = fact
+        elif fact['type'] == 'val':
+            facts_dict[fact['name']] = fact
+    p[0] = {
+        'type': 'stmt_let',
+        'facts': facts_dict,
+        'stmt': p[4]
+    }
+
+def p_exec_line(p):
+    '''exec_line : EXEC stm'''
+    p[0] = p[2]  # Just return the statement
+
+#Error rule for syntax errors
+def p_error(p):
+    global has_error, last_line
+    has_error = True
+    if p:
+        print(f"Syntax error in input: {p.lineno}")
+    else:
+        # EOF error - you need to track the last line number
+        print(f"Syntax error in input: {last_line}")
+
+# END PARSING DEFINITION
+
+
+# CALL PARSING 
+
+def main():
+    global has_error
+    has_error = False
+    
+    print("Initiating Parsing")
+
+    # Build the parser (lexer is already built)
+    parser = yacc.yacc()
+
+    # Read the file
+    with open('Program_Test.txt', 'r') as textFile:
+        data = textFile.read()
+
+    # Parse the file
+    result = parser.parse(data, lexer=lexer)
+    
+    # Check if there were any errors
+    if not has_error:
+        print("Syntax error in input: none")
+        # Print the AST
+        import pprint
+        print("\nAbstract Syntax Tree (AST):")
+        pprint.pprint(result, indent=2)
+    
+    print("Finalizing Parsing")
+
+if __name__ == '__main__':
+    main()
+
