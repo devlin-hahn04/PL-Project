@@ -1,6 +1,6 @@
 import sys
 import os
-from parser import parser
+from Parser import parser
 from interpreter import Interpreter
 import pprint
 
